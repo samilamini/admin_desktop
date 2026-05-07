@@ -1,0 +1,212 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── TOP NAVBAR ── */
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+  height: 56px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-left h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.navbar-left p {
+  font-size: 11px;
+  color: #aaa;
+  margin: 0;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar-icon { color: #666; cursor: pointer; }
+
+.navbar-icon-wrap {
+  width: 32px;
+  height: 32px;
+  background: #e8f5ee;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1b6b3a;
+}
+
+.user-name { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+.user-role { font-size: 11px; color: #aaa; }
+
+/* ── PAGE CONTENT ── */
+.page-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 12px 18px;
+  background: #f5f6fa;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: calc(100vh - 56px);
+}
+
+/* ── STAT CARDS ── */
+.stat-cards {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ── DASHBOARD GRID (UI1) ── */
+.dashboard-grid {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.grid-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.grid-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── FILTRES UI2 ── */
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.filter-select {
+  padding: 5px 8px;
+  border: 1px solid #e4e9ef;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1a2332;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.export-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #1b6b3a;
+  color: #fff;
+  border-radius: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(26,107,58,0.25);
+}
+
+/* ── CHARTS UI2 ── */
+.charts-row {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.bottom-row {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* ── PLACEHOLDER ── */
+.page-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #9aa5b4;
+}
+.toggle-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #f7f7f7;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.toggle-btn:hover {
+  background: #ececec;
+}

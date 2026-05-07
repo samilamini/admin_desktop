@@ -1,0 +1,64 @@
+.sidebar {
+  width: 160px;
+  min-height: 100vh;
+  background: #1b6b3a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-logo {
+  background: white;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.logo-arabic {
+  color: #e8372a;
+  font-size: 10px;
+  font-weight: bold;
+  direction: rtl;
+}
+
+.logo-text {
+  color: #1b6b3a;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -1px;
+}
+
+.sidebar-nav {
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-title {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  padding: 10px 14px 6px;
+  text-transform: uppercase;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.nav-item:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.nav-item.active {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 3px solid white;
+}

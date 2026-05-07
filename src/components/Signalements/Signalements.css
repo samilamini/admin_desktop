@@ -1,0 +1,210 @@
+.sig-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.sig-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sig-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 7px 14px;
+  width: 300px;
+}
+
+.sig-search {
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: #333;
+  width: 100%;
+  background: transparent;
+}
+
+.sig-export-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: #1b6b3a;
+  color: #fff;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(26,107,58,0.25);
+}
+
+.sig-filterbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sig-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.sig-tab {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background: white;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.sig-tab:hover { background: #f5f5f5; }
+
+.sig-tab-active-Tous      { background: #1b6b3a !important; color: white !important; border-color: #1b6b3a !important; }
+.sig-tab-active-En-attente { background: #fff0f0 !important; color: #e63946 !important; border-color: #e63946 !important; }
+.sig-tab-active-En-cours  { background: #fff8e6 !important; color: #f4a261 !important; border-color: #f4a261 !important; }
+.sig-tab-active-Résolu    { background: #e6f7ef !important; color: #2d6a4f !important; border-color: #2d6a4f !important; }
+
+.sig-dropdowns { display: flex; gap: 8px; }
+
+.sig-select {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  font-size: 12.5px;
+  color: #333;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Table */
+.sig-table-wrap {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+  flex: 1;
+}
+
+.sig-tab {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  opacity: 0.5;
+}
+
+
+.sig-tab:nth-child(1) { background: #1b6b3a; color: white; }
+.sig-tab:nth-child(2) { background: #e63946; color: white; }
+.sig-tab:nth-child(3) { background: #f4a261; color: white; }
+.sig-tab:nth-child(4) { background: #2d6a4f; color: white; }
+
+
+.sig-tab.active { opacity: 1; }
+.sig-table thead tr {
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+
+.sig-table th {
+  text-align: left;
+  padding: 11px 14px;
+  font-weight: 600;
+  color: #999;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.sig-table td {
+  padding: 14px 14px;
+  border-bottom: 1px solid #f5f5f5;
+  color: #333;
+  font-size: 13px;
+}
+
+.sig-table tbody tr:last-child td { border-bottom: none; }
+.sig-table tbody tr:hover { background: #fafffe; }
+
+.sig-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-success { background: #e6f7ef; color: #2d6a4f; }
+.badge-info    { background: #fff8e6; color: #f4a261; }
+.badge-warning { background: #fff0f0; color: #e63946; }
+
+.sig-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.sig-action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+
+.sig-action-btn.view   { background: #e8f5ee; color: #1b6b3a; }
+.sig-action-btn.edit   { background: #f0f0f0; color: #555; }
+.sig-action-btn.delete { background: #fff0f0; color: #e63946; }
+
+.sig-action-btn:hover { opacity: 0.8; }
+
+.sig-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.sig-page-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid #e8e8e8;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  transition: background 0.15s;
+}
+
+.sig-page-btn:hover { background: #f5f5f5; }
+.sig-page-btn.active { background: #1b6b3a; color: white; border-color: #1b6b3a; }
+
+.sig-page-dots { font-size: 13px; color: #aaa; padding: 0 4px; }
