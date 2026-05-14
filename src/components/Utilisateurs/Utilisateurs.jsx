@@ -4,12 +4,21 @@ import './Utilisateurs.css';
 
 const allData = [
   { msisdn: '213697******', date: '12/01/26', signalements: 3,  status: 'Actif' },
-  { msisdn: '213697******', date: '10/01/26', signalements: 6,  status: 'Suspendu' },
-  { msisdn: '213697******', date: '19/12/25', signalements: 10, status: 'Actif' },
-  { msisdn: '213697******', date: '12/12/25', signalements: 9,  status: 'Actif' },
-  { msisdn: '213697******', date: '9/12/25',  signalements: 5,  status: 'Suspendu' },
+  { msisdn: '213698******', date: '10/01/26', signalements: 6,  status: 'Suspendu' },
+  { msisdn: '213699******', date: '19/12/25', signalements: 10, status: 'Actif' },
+  { msisdn: '213700******', date: '12/12/25', signalements: 9,  status: 'Actif' },
+  { msisdn: '213701******', date: '9/12/25',  signalements: 5,  status: 'Suspendu' },
+  { msisdn: '213702******', date: '8/12/25',  signalements: 2,  status: 'Actif' },
+  { msisdn: '213703******', date: '7/12/25',  signalements: 14, status: 'Actif' },
+  { msisdn: '213704******', date: '6/12/25',  signalements: 1,  status: 'Suspendu' },
+  { msisdn: '213705******', date: '5/12/25',  signalements: 7,  status: 'Actif' },
+  { msisdn: '213706******', date: '4/12/25',  signalements: 3,  status: 'Suspendu' },
+  { msisdn: '213707******', date: '3/12/25',  signalements: 8,  status: 'Actif' },
+  { msisdn: '213708******', date: '2/12/25',  signalements: 11, status: 'Actif' },
+  { msisdn: '213709******', date: '1/12/25',  signalements: 4,  status: 'Suspendu' },
+  { msisdn: '213710******', date: '30/11/25', signalements: 6,  status: 'Actif' },
+  { msisdn: '213711******', date: '29/11/25', signalements: 9,  status: 'Actif' },
 ];
-
 export default function Utilisateurs() {
   const [search, setSearch]             = useState('');
   const [filter, setFilter]             = useState('tous les utilisateurs');
@@ -43,6 +52,7 @@ export default function Utilisateurs() {
   return (
     <div className="util-page">
 
+      {/* Stats */}
       <div className="util-stats">
         <div className="util-stat-card">
           <div className="util-stat-icon" style={{ background: '#e8f5ee' }}>
@@ -73,7 +83,10 @@ export default function Utilisateurs() {
         </div>
       </div>
 
+      {/* Table card */}
       <div className="util-table-card">
+
+        {/* Topbar fixe */}
         <div className="util-topbar">
           <div className="util-search-wrap">
             <Search size={14} color="#aaa" />
@@ -91,38 +104,42 @@ export default function Utilisateurs() {
           </select>
         </div>
 
-        <table className="util-table">
-          <thead>
-            <tr>
-              {['MSISDN', "Date d'inscription", 'Signalements', 'Status', 'Action'].map(h => (
-                <th key={h}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((row, i) => (
-              <tr key={i}>
-                <td>{row.msisdn}</td>
-                <td>{row.date}</td>
-                <td>{row.signalements}</td>
-                <td>
-                  <span className={`util-badge ${row.status === 'Actif' ? 'badge-actif' : 'badge-suspendu'}`}>
-                    {row.status}
-                  </span>
-                </td>
-                <td>
-                  <div className="util-actions">
-                    <button className="util-action-btn view"><Eye size={14} /></button>
-                    <button className="util-action-btn ban" onClick={() => openModal(row)}>
-                      <Ban size={14} />
-                    </button>
-                  </div>
-                </td>
+        {/* Zone scrollable ← seul changement JSX */}
+        <div className="util-table-scroll">
+          <table className="util-table">
+            <thead>
+              <tr>
+                {['MSISDN', "Date d'inscription", 'Signalements', 'Status', 'Action'].map(h => (
+                  <th key={h}>{h}</th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filtered.map((row, i) => (
+                <tr key={i}>
+                  <td>{row.msisdn}</td>
+                  <td>{row.date}</td>
+                  <td>{row.signalements}</td>
+                  <td>
+                    <span className={`util-badge ${row.status === 'Actif' ? 'badge-actif' : 'badge-suspendu'}`}>
+                      {row.status}
+                    </span>
+                  </td>
+                  <td>
+                    <div className="util-actions">
+                      <button className="util-action-btn view"><Eye size={14} /></button>
+                      <button className="util-action-btn ban" onClick={() => openModal(row)}>
+                        <Ban size={14} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
+        {/* Pagination fixe */}
         <div className="util-pagination">
           <button className="util-page-btn" onClick={() => setPage(p => Math.max(1, p - 1))}>
             <ChevronLeft size={14} />
@@ -138,6 +155,7 @@ export default function Utilisateurs() {
         </div>
       </div>
 
+      {/* Modal */}
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-box" onClick={e => e.stopPropagation()}>

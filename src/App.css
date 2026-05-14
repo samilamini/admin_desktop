@@ -88,6 +88,22 @@ html, body, #root {
 .user-name { font-size: 13px; font-weight: 600; color: #1a1a2e; }
 .user-role { font-size: 11px; color: #aaa; }
 
+.toggle-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #f7f7f7;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.toggle-btn:hover { background: #ececec; }
+
 /* ── PAGE CONTENT ── */
 .page-content {
   flex: 1;
@@ -97,7 +113,8 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: calc(100vh - 56px);
+  min-height: 0;
+  height: 0;
 }
 
 /* ── STAT CARDS ── */
@@ -107,7 +124,7 @@ html, body, #root {
   flex-shrink: 0;
 }
 
-/* ── DASHBOARD GRID (UI1) ── */
+/* ── DASHBOARD GRID ── */
 .dashboard-grid {
   display: flex;
   gap: 12px;
@@ -141,7 +158,7 @@ html, body, #root {
 }
 
 .filter-select {
-  padding: 5px 8px;
+  padding: 6px 10px;
   border: 1px solid #e4e9ef;
   border-radius: 6px;
   font-size: 12px;
@@ -179,8 +196,7 @@ html, body, #root {
 .bottom-row {
   display: flex;
   gap: 12px;
-  flex: 1;
-  min-height: 0;
+  flex-shrink: 0;
   min-width: 0;
 }
 
@@ -192,21 +208,4 @@ html, body, #root {
   justify-content: center;
   font-size: 15px;
   color: #9aa5b4;
-}
-.toggle-btn {
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  border: 1px solid #eee;
-  background: #f7f7f7;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.15s;
-}
-
-.toggle-btn:hover {
-  background: #ececec;
 }

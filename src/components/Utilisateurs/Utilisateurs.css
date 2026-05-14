@@ -4,9 +4,14 @@
   gap: 14px;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
 
-.util-stats { display: flex; gap: 14px; }
+.util-stats {
+  display: flex;
+  gap: 14px;
+  flex-shrink: 0;
+}
 
 .util-stat-card {
   flex: 1;
@@ -28,10 +33,8 @@
 }
 
 .util-stat-label {
-  font-size: 12px;
-  color: #555;
-  font-weight: 700;
-  margin: 0 0 3px;
+  font-size: 12px; color: #555;
+  font-weight: 700; margin: 0 0 3px;
 }
 
 .util-stat-value { font-size: 22px; font-weight: 700; color: #1a1a2e; margin: 0; }
@@ -47,9 +50,13 @@
   gap: 14px;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
 
-.util-topbar { display: flex; align-items: center; gap: 12px; }
+.util-topbar {
+  display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0;
+}
 
 .util-search-wrap {
   display: flex; align-items: center; gap: 8px;
@@ -69,6 +76,12 @@
   color: #333; background: white; cursor: pointer; outline: none;
 }
 
+.util-table-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
 .util-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 
 .util-table thead tr { border-bottom: 1px solid #eee; background: #fafafa; }
@@ -77,6 +90,10 @@
   text-align: left; padding: 8px 12px;
   font-weight: 600; color: #999;
   font-size: 11px; text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  background: #fafafa;
+  z-index: 1;
 }
 
 .util-table td {
@@ -87,15 +104,13 @@
 
 .util-table tbody tr:last-child td { border-bottom: none; }
 .util-table tbody tr:hover { background: #fafffe; }
+
 .util-badge {
-  padding: 4px 0;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  width: 80px;
-  text-align: center;
-  display: inline-block;
+  padding: 4px 0; border-radius: 20px;
+  font-size: 12px; font-weight: 500;
+  width: 80px; text-align: center; display: inline-block;
 }
+
 .badge-actif    { background: #1b6b3a; color: white; }
 .badge-suspendu { background: #e63946; color: white; }
 
@@ -114,6 +129,7 @@
 .util-pagination {
   display: flex; justify-content: center;
   align-items: center; gap: 4px;
+  flex-shrink: 0;
 }
 
 .util-page-btn {
@@ -128,6 +144,7 @@
 .util-page-btn.active { background: #1b6b3a; color: white; border-color: #1b6b3a; }
 .util-page-dots { font-size: 13px; color: #aaa; padding: 0 4px; }
 
+/* ── MODAL ── */
 .modal-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.55);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 import StatCard from './components/StatCard/StatCard';
 import SignalementsTable from './components/SignalementsTable/SignalementsTable';
@@ -65,23 +65,38 @@ function PageStatistiques() {
 
 export default function App() {
   const [activeNav, setActiveNav] = useState('dashboard');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 900px)');
+    const handleResize = (event) => setSidebarOpen(event.matches);
+    handleResize(mediaQuery);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleResize);
+      return () => mediaQuery.removeEventListener('change', handleResize);
+    }
+    mediaQuery.addListener(handleResize);
+    return () => mediaQuery.removeListener(handleResize);
+  }, []);
 
   const titles = {
-    dashboard:    { title: 'Dashboard',    sub: 'Plateforme de gestion des signalements Mobilis', icon: <LayoutDashboard size={18} color="#1b6b3a" /> },
-    signalements: { title: 'Signalements', sub: 'Liste des signalements',                         icon: <Radio size={18} color="#1b6b3a" /> },
-    statistiques: { title: 'Statistiques', sub: 'Plateforme du gestion des signalements Mobilis', icon: <BarChart2 size={18} color="#1b6b3a" /> },
-    carte:        { title: 'Carte',        sub: 'Carte des zones critiques',                      icon: <Map size={18} color="#1b6b3a" /> },
-    users:        { title: 'Utilisateurs', sub: 'Gestion des utilisateurs',                       icon: null },
-    rapports:     { title: 'Rapports',     sub: 'Rapports et exports',                            icon: <FileText size={18} color="#1b6b3a" /> },
+    dashboard:    { title: 'Tableau de bord',    sub: 'Plateforme de gestion des signalements Mobilis' },
+    signalements: { title: 'Signalements', sub: 'Liste des signalements' },
+    statistiques: { title: 'Statistiques', sub: 'Plateforme du gestion des signalements Mobilis' },
+    carte:        { title: 'Carte',        sub: 'Carte des zones critiques'},
+    users:        { title: 'Utilisateurs', sub: 'Gestion des utilisateurs' },
+    rapports:     { title: 'Rapports',     sub: 'Rapports et exports' },
   };
 
   const current = titles[activeNav] || titles.dashboard;
 
   return (
-    <div className="app">
+    <div className={`app ${sidebarOpen ? 'sidebar-open' : ''}`}>
       {sidebarOpen && (
         <Sidebar activeItem={activeNav} onNavigate={setActiveNav} />
+      )}
+      {sidebarOpen && (
+        <div className="sidebar-backdrop" onClick={() => setSidebarOpen(false)} />
       )}
 
       <div className="main-content">
