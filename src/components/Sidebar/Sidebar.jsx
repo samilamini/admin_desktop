@@ -1,4 +1,5 @@
-import { LayoutDashboard, AlertTriangle, BarChart2, Map, Users, FileText } from 'lucide-react';
+import { LayoutDashboard, AlertTriangle, BarChart2, Map, Users, FileText, LogOut, User } from 'lucide-react';
+import mobilisLogo from '../../assets/Mobilis_Logo_white.svg';
 import './Sidebar.css';
 
 const navItems = [
@@ -17,8 +18,7 @@ export default function Sidebar({ activeItem, onNavigate }) {
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
-        <div className="logo-arabic">موبيليس</div>
-        <div className="logo-text">mobilis</div>
+        <img src={mobilisLogo} alt="Mobilis" className="logo-img" />
       </div>
 
       <div className="sidebar-nav">
@@ -45,6 +45,21 @@ export default function Sidebar({ activeItem, onNavigate }) {
             <span>{item.label}</span>
           </div>
         ))}
+      </div>
+
+      <div className="sidebar-footer">
+        <div className="sidebar-user">
+          <div className="sidebar-avatar">
+            <User size={16} color="#1b6b3a" />
+          </div>
+          <div className="sidebar-user-info">
+            <div className="sidebar-user-name">Admin</div>
+            <div className="sidebar-user-role">Administrateur</div>
+          </div>
+          <button className="sidebar-logout-icon">
+            <LogOut size={16} />
+          </button>
+        </div>
       </div>
     </div>
   );

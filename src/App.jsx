@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import StatCard from './components/StatCard/StatCard';
 import SignalementsTable from './components/SignalementsTable/SignalementsTable';
 import StatusChart from './components/StatusChart/StatusChart';
+import Rapports from './components/Rapports/Rapports';
 import {
   SignalementsByType, SignalementsByRegion,
   EvolutionMensuelle, ResumePerformances
@@ -12,9 +13,7 @@ import Carte from './components/Carte/Carte';
 import Utilisateurs from './components/Utilisateurs/Utilisateurs';
 import {
   AlertTriangle, ClipboardList, Clock, Star,
-  Bell, Calendar, ChevronDown, Download,
-  LayoutDashboard, MapPin, TrendingUp,
-  Radio, BarChart2, Map, FileText, PanelLeft
+  Bell, Calendar, Download, MapPin, TrendingUp, PanelLeft
 } from 'lucide-react';
 import './App.css';
 
@@ -81,11 +80,11 @@ export default function App() {
 
   const titles = {
     dashboard:    { title: 'Tableau de bord',    sub: 'Plateforme de gestion des signalements Mobilis' },
-    signalements: { title: 'Signalements', sub: 'Liste des signalements' },
-    statistiques: { title: 'Statistiques', sub: 'Plateforme du gestion des signalements Mobilis' },
-    carte:        { title: 'Carte',        sub: 'Carte des zones critiques'},
-    users:        { title: 'Utilisateurs', sub: 'Gestion des utilisateurs' },
-    rapports:     { title: 'Rapports',     sub: 'Rapports et exports' },
+    signalements: { title: 'Signalements',       sub: 'Liste des signalements' },
+    statistiques: { title: 'Statistiques',       sub: 'Plateforme de gestion des signalements Mobilis' },
+    carte:        { title: 'Carte',              sub: 'Carte des zones critiques' },
+    users:        { title: 'Utilisateurs',       sub: 'Gestion des utilisateurs' },
+    rapports:     { title: 'Rapports',           sub: 'Rapports et exports' },
   };
 
   const current = titles[activeNav] || titles.dashboard;
@@ -105,11 +104,6 @@ export default function App() {
             <button className="toggle-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
               <PanelLeft size={20} color="#555" />
             </button>
-            {current.icon && (
-              <div className="navbar-icon-wrap">
-                {current.icon}
-              </div>
-            )}
             <div>
               <h2>{current.title}</h2>
               <p>{current.sub}</p>
@@ -118,14 +112,6 @@ export default function App() {
           <div className="navbar-right">
             <Bell size={18} className="navbar-icon" />
             <Calendar size={18} className="navbar-icon" />
-            <div className="user-info">
-              <div className="user-avatar" />
-              <div>
-                <div className="user-name">name</div>
-                <div className="user-role">position du user</div>
-              </div>
-              <ChevronDown size={14} color="#aaa" />
-            </div>
           </div>
         </div>
 
@@ -135,11 +121,12 @@ export default function App() {
           {activeNav === 'signalements' && <Signalements />}
           {activeNav === 'carte'        && <Carte />}
           {activeNav === 'users'        && <Utilisateurs />}
-          {!['dashboard', 'statistiques', 'signalements', 'carte', 'users'].includes(activeNav) && (
-            <div className="page-placeholder">
-              <p>Section <strong>{activeNav}</strong> — à implémenter</p>
-            </div>
-          )}
+          {activeNav === 'rapports' && <Rapports />}
+{!['dashboard', 'statistiques', 'signalements', 'carte', 'users', 'rapports'].includes(activeNav) && (
+  <div className="page-placeholder">
+    <p>Section <strong>{activeNav}</strong> — à implémenter</p>
+  </div>
+)}
         </div>
       </div>
     </div>

@@ -7,31 +7,21 @@
   flex-direction: column;
   flex-shrink: 0;
 }
-
 .sidebar-logo {
-  background: white;
+  background: transparent;
   margin: 10px;
-  border-radius: 8px;
-  padding: 8px;
-  text-align: center;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.logo-arabic {
-  color: #e8372a;
-  font-size: 10px;
-  font-weight: bold;
-  direction: rtl;
-}
-
-.logo-text {
-  color: #1b6b3a;
-  font-size: 20px;
-  font-weight: 900;
-  font-style: italic;
-  letter-spacing: -1px;
+.logo-img {
+  width: 140px;
+  object-fit: contain;
 }
 
 .sidebar-nav {
+  flex: 1;
   padding: 8px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -54,11 +44,72 @@
   transition: background 0.2s;
 }
 
-.nav-item:hover {
-  background: rgba(0, 0, 0, 0.15);
-}
+.nav-item:hover { background: rgba(0, 0, 0, 0.15); }
 
 .nav-item.active {
   background: rgba(0, 0, 0, 0.2);
   border-left: 3px solid white;
+}
+
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 10px;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-user-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-logout-icon {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.sidebar-logout-icon:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
 }
