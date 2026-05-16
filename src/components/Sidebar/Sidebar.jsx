@@ -16,7 +16,7 @@ const gestionItems = [
   { icon: <FileText size={16}/>, labelKey: 'rapports',     id: 'rapports' },
 ];
 
-export default function Sidebar({ activeItem, onNavigate }) {
+export default function Sidebar({ activeItem, onNavigate, onLogout }) {
   const { lang } = useLang();
   const s = t.sidebar;
 
@@ -61,7 +61,7 @@ export default function Sidebar({ activeItem, onNavigate }) {
             <div className="sidebar-user-name">{s.adminName?.[lang] ?? 'Admin'}</div>
             <div className="sidebar-user-role">{s.adminRole?.[lang] ?? 'Administrateur'}</div>
           </div>
-          <button className="sidebar-logout-icon">
+          <button className="sidebar-logout-icon" onClick={() => onLogout && onLogout()}>
             <LogOut size={16} />
           </button>
         </div>

@@ -258,6 +258,43 @@
     }
   },
 
+  "auth": {
+    "login_tab": { "fr": "Connexion", "en": "Log in", "ar": "تسجيل الدخول" },
+    "register_tab": { "fr": "Créer un compte", "en": "Sign in", "ar": "إنشاء حساب" },
+    "email": { "fr": "Email", "en": "Email", "ar": "البريد الإلكتروني" },
+    "phone": { "fr": "Numéro de téléphone", "en": "Phone number", "ar": "رقم الهاتف" },
+    "password": { "fr": "Mot de passe", "en": "Password", "ar": "كلمة المرور" },
+    "confirm_password": { "fr": "Confirmer mot de passe", "en": "Confirm password", "ar": "تأكيد كلمة المرور" },
+    "remember_me": { "fr": "Se souvenir de moi", "en": "Remember me", "ar": "تذكرني" },
+    "forgot_password": { "fr": "Mot de passe oublié ?", "en": "Forgot password?", "ar": "نسيت كلمة المرور؟" },
+    "login_btn": { "fr": "Se connecter", "en": "Log in", "ar": "تسجيل الدخول" },
+    "register_btn": { "fr": "Créer un compte", "en": "Create account", "ar": "إنشاء حساب" },
+    "google_btn": { "fr": "Continuer avec Google", "en": "Continue with Google", "ar": "المتابعة مع Google" },
+    "no_account": { "fr": "Pas encore de compte ?", "en": "Don't have an account?", "ar": "ليس لديك حساب؟" },
+    "terms": { "fr": "J'accepte les conditions d'utilisation", "en": "I accept the terms of use", "ar": "أوافق على شروط الاستخدام" },
+    "email_required": { "fr": "L'email est requis.", "en": "Email is required.", "ar": "البريد الإلكتروني مطلوب." },
+    "email_invalid": { "fr": "Format email invalide. Ex: nom@gmail.com", "en": "Invalid email format. Ex: name@gmail.com", "ar": "صيغة البريد الإلكتروني غير صحيحة." },
+    "phone_required": { "fr": "Le numéro est requis.", "en": "Phone number is required.", "ar": "رقم الهاتف مطلوب." },
+    "phone_invalid": { "fr": "Numéro invalide. Chiffres uniquement.", "en": "Invalid number. Digits only.", "ar": "رقم غير صالح. أرقام فقط." },
+    "password_required": { "fr": "Le mot de passe est requis.", "en": "Password is required.", "ar": "كلمة المرور مطلوبة." },
+    "password_short": { "fr": "Minimum 6 caractères.", "en": "Minimum 6 characters.", "ar": "6 أحرف على الأقل." },
+    "confirm_required": { "fr": "Veuillez confirmer le mot de passe.", "en": "Please confirm your password.", "ar": "يرجى تأكيد كلمة المرور." },
+    "confirm_mismatch": { "fr": "Les mots de passe ne correspondent pas.", "en": "Passwords do not match.", "ar": "كلمتا المرور غير متطابقتين." },
+    "left_title_1": { "fr": "Application Web de", "en": "Web Application for", "ar": "منصة" },
+    "left_title_2": { "fr": "Cartographie", "en": "Mapping", "ar": "عرض" },
+    "left_title_3": { "fr": "et d'", "en": "and ", "ar": "و " },
+    "left_title_4": { "fr": "Analyse", "en": "Analysis", "ar": "تحليل" },
+    "left_title_5": { "fr": "du Reseau Mobilis", "en": "of the Mobilis Network", "ar": "شبكة موبيليس عبر الخريطة" },
+    "left_desc": { "fr": "Visualisez la qualité du réseau, signalez les problèmes et suivez les performances du réseau en temps réel.", "en": "Visualize network quality, report problems and track network performance in real time.", "ar": "تصور جودة الشبكة، أبلغ عن المشاكل وتابع أداء الشبكة في الوقت الفعلي." },
+    "left_feature_1": { "fr": "Carte interactive", "en": "Interactive map", "ar": "خريطة تفاعلية" },
+    "left_feature_2": { "fr": "Statistiques Reseau", "en": "Network statistics", "ar": "إحصائيات الشبكة" },
+    "left_feature_3": { "fr": "Signalement rapide", "en": "Quick reporting", "ar": "إبلاغ سريع" },
+    "lang_french": { "fr": "Français", "en": "French", "ar": "الفرنسية" },
+    "lang_english": { "fr": "Anglais", "en": "English", "ar": "الإنجليزية" },
+    "lang_arabic": { "fr": "Arabe", "en": "Arabic", "ar": "العربية" },
+    "or_label": { "fr": "OU", "en": "OR", "ar": "او" }
+  },
+
   "common": {
     "months": {
       "fr": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],

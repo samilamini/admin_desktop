@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import { Search } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -44,24 +44,44 @@ export default function Carte() {
 
   return (
     <div className="carte-page">
-      <div className="carte-map">
-        <MapContainer center={[36.7200, 3.1500]} zoom={12} style={{ width: '100%', height: '100%', borderRadius: 12 }}>
-          <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-          />
-          {zones.map(z => (
-            <Marker key={z.nameKey} position={[z.lat, z.lng]} icon={createIcon(z.color)}>
-              <Popup>
-                <strong>{t.signalements.regions[z.nameKey]?.[lang]}</strong><br />
-                {z.signals} {c.criticalZones.signalements[lang]} · {z.bts}<br />
-                <span style={{ color: z.color }}>{c.levels[z.levelKey][lang]}</span>
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+      {/* Conteneur de la carte */}
+      <div className="carte-map-container">
+        
+        {/* Uniquement ton bouton personnalisé en haut à gauche */}
+        <button className="carte-btn-heatmap" type="button">
+          <span className="orange-circle-icon"></span>
+          <span>View heat map</span>
+        </button>
+
+        <div className="carte-map">
+          <MapContainer 
+            center={[36.7200, 3.1500]} 
+            zoom={12} 
+            zoomControl={false} /* Désactive le zoom par défaut natif */
+            style={{ width: '100%', height: '100%' }}
+          >
+            <TileLayer
+              url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+              attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+            />
+            
+            {/* L'unique bloc de zoom autorisé sur la carte se place ici, en bas à droite */}
+            <ZoomControl position="bottomright" />
+
+            {zones.map(z => (
+              <Marker key={z.nameKey} position={[z.lat, z.lng]} icon={createIcon(z.color)}>
+                <Popup>
+                  <strong>{t.signalements.regions[z.nameKey]?.[lang]}</strong><br />
+                  {z.signals} {c.criticalZones.signalements[lang]} · {z.bts}<br />
+                  <span style={{ color: z.color }}>{c.levels[z.levelKey][lang]}</span>
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </div>
       </div>
 
+      {/* Barre latérale droite */}
       <div className="carte-sidebar">
         <div className="carte-search-wrap">
           <Search size={14} color="#aaa" />

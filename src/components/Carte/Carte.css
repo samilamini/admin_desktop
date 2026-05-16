@@ -1,3 +1,4 @@
+/* Conteneur principal responsive */
 .carte-page {
   display: flex;
   gap: 14px;
@@ -6,14 +7,62 @@
   overflow: hidden;
 }
 
-.carte-map {
+/* Nouveau conteneur pour gérer le bouton flottant à l'intérieur de la carte */
+.carte-map-container {
   flex: 2;
+  position: relative; /* Indispensable pour positionner le bouton par-dessus */
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   min-height: 0;
 }
 
+/* La zone de la carte Leaflet */
+.carte-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* FORCE LA SUPPRESSION DU CONTROLE DE ZOOM EN HAUT À GAUCHE */
+.carte-map .leaflet-top.leaflet-left .leaflet-control-zoom {
+  display: none !important;
+}
+
+/* LE BOUTON FLOTTANT À L'INTÉRIEUR DE LA CARTE (En haut à gauche) */
+.carte-btn-heatmap {
+  position: absolute;
+  top: 12px;
+  left: 12px; /* Replaqué proprement au bord gauche */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background-color 0.2s;
+}
+
+.carte-btn-heatmap:hover {
+  background-color: #f8f9fa;
+}
+
+/* Le petit cercle orange demandé */
+.orange-circle-icon {
+  width: 10px;
+  height: 10px;
+  background-color: #f4a261;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --- La barre latérale --- */
 .carte-sidebar {
   width: 260px;
   flex-shrink: 0;
@@ -23,6 +72,7 @@
   overflow-y: auto;
 }
 
+/* Barre de recherche */
 .carte-search-wrap {
   display: flex;
   align-items: center;
@@ -42,6 +92,7 @@
   background: transparent;
 }
 
+/* Panneaux de la barre latérale */
 .carte-panel {
   background: white;
   border: 1px solid #e8e8e8;
@@ -87,7 +138,7 @@
   color: #999;
 }
 
-
+/* Badges */
 .carte-badge {
   padding: 3px 10px;
   border-radius: 20px;
@@ -100,7 +151,7 @@
 .badge-eleve    { background: #f4a261; color: white; }
 .badge-faible   { background: #2d6a4f; color: white; }
 
-
+/* Légende */
 .carte-legend {
   display: flex;
   flex-direction: column;
@@ -120,4 +171,30 @@
   height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* --- AJUSTEMENT RESPONSIVE (Mobile & Tablette) --- */
+@media (max-width: 900px) {
+  .carte-page {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .carte-sidebar {
+    width: 100%;
+    overflow-y: visible;
+  }
+
+  .carte-map-container {
+    height: 400px;
+    min-height: 320px;
+    flex: none;
+  }
+
+  .carte-search-wrap,
+  .carte-panel {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }

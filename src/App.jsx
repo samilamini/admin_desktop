@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
+import LoginPage from './components/LoginPage/LoginPage';
 import StatCard from './components/StatCard/StatCard';
 import SignalementsTable from './components/SignalementsTable/SignalementsTable';
 import StatusChart from './components/StatusChart/StatusChart';
@@ -86,6 +87,7 @@ function PageStatistiques() {
 
 function AppContent() {
   const { lang, setLang } = useLang();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeNav, setActiveNav]     = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -102,6 +104,10 @@ function AppContent() {
     return () => mediaQuery.removeListener(handleResize);
   }, []);
 
+  if (!isLoggedIn) {
+    return <LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />;
+  }
+
   const titles = {
     dashboard:    { title: t.sidebar.dashboard[lang],    sub: t.dashboard.pageSubtitle[lang] },
     signalements: { title: t.sidebar.signalements[lang], sub: t.signalements.pageSubtitle[lang] },
@@ -116,7 +122,7 @@ function AppContent() {
   return (
     <div className={`app ${sidebarOpen ? 'sidebar-open' : ''}`}>
       {sidebarOpen && (
-        <Sidebar activeItem={activeNav} onNavigate={setActiveNav} />
+        <Sidebar activeItem={activeNav} onNavigate={setActiveNav} onLogout={() => setIsLoggedIn(false)} />
       )}
       {sidebarOpen && (
         <div className="sidebar-backdrop" onClick={() => setSidebarOpen(false)} />
