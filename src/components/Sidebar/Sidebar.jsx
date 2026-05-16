@@ -1,20 +1,25 @@
 import { LayoutDashboard, AlertTriangle, BarChart2, Map, Users, FileText, LogOut, User } from 'lucide-react';
 import mobilisLogo from '../../assets/Mobilis_Logo_white.svg';
 import './Sidebar.css';
+import t from '../../translations.json';
+import { useLang } from '../../context/LanguageContext';
 
 const navItems = [
-  { icon: <LayoutDashboard size={16}/>, label: 'Tableau de bord', id: 'dashboard' },
-  { icon: <AlertTriangle size={16}/>,   label: 'Signalements',    id: 'signalements' },
-  { icon: <BarChart2 size={16}/>,       label: 'Statistiques',    id: 'statistiques' },
-  { icon: <Map size={16}/>,             label: 'Carte',            id: 'carte' },
+  { icon: <LayoutDashboard size={16}/>, labelKey: 'dashboard',    id: 'dashboard'    },
+  { icon: <AlertTriangle size={16}/>,   labelKey: 'signalements', id: 'signalements' },
+  { icon: <BarChart2 size={16}/>,       labelKey: 'statistiques', id: 'statistiques' },
+  { icon: <Map size={16}/>,             labelKey: 'carte',        id: 'carte'        },
 ];
 
 const gestionItems = [
-  { icon: <Users size={16}/>,    label: 'Utilisateurs', id: 'users' },
-  { icon: <FileText size={16}/>, label: 'Rapports',     id: 'rapports' },
+  { icon: <Users size={16}/>,    labelKey: 'utilisateurs', id: 'users'    },
+  { icon: <FileText size={16}/>, labelKey: 'rapports',     id: 'rapports' },
 ];
 
 export default function Sidebar({ activeItem, onNavigate }) {
+  const { lang } = useLang();
+  const s = t.sidebar;
+
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
@@ -22,27 +27,27 @@ export default function Sidebar({ activeItem, onNavigate }) {
       </div>
 
       <div className="sidebar-nav">
-        <p className="nav-title">Navigation</p>
-        {navItems.map((item) => (
+        <p className="nav-title">{s.navTitle[lang]}</p>
+        {navItems.map(item => (
           <div
             key={item.id}
             className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
             onClick={() => onNavigate && onNavigate(item.id)}
           >
             {item.icon}
-            <span>{item.label}</span>
+            <span>{s[item.labelKey][lang]}</span>
           </div>
         ))}
 
-        <p className="nav-title">Gestion</p>
-        {gestionItems.map((item) => (
+        <p className="nav-title">{s.gestionTitle[lang]}</p>
+        {gestionItems.map(item => (
           <div
             key={item.id}
             className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
             onClick={() => onNavigate && onNavigate(item.id)}
           >
             {item.icon}
-            <span>{item.label}</span>
+            <span>{s[item.labelKey][lang]}</span>
           </div>
         ))}
       </div>
@@ -53,8 +58,8 @@ export default function Sidebar({ activeItem, onNavigate }) {
             <User size={16} color="#1b6b3a" />
           </div>
           <div className="sidebar-user-info">
-            <div className="sidebar-user-name">Admin</div>
-            <div className="sidebar-user-role">Administrateur</div>
+            <div className="sidebar-user-name">{s.adminName?.[lang] ?? 'Admin'}</div>
+            <div className="sidebar-user-role">{s.adminRole?.[lang] ?? 'Administrateur'}</div>
           </div>
           <button className="sidebar-logout-icon">
             <LogOut size={16} />

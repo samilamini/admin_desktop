@@ -104,6 +104,61 @@ html, body, #root {
 
 .toggle-btn:hover { background: #ececec; }
 
+/* ── DROPDOWN LANGUE NAVBAR ── */
+.lang-dropdown-wrap-navbar {
+  position: relative;
+}
+
+.lang-dropdown-btn-navbar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+
+.lang-dropdown-btn-navbar:hover {
+  color: #1b6b3a;
+}
+
+.lang-dropdown-menu-navbar {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 130px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 200;
+}
+
+.lang-dropdown-item-navbar {
+  width: 100%;
+  text-align: left;
+  padding: 9px 14px;
+  font-size: 13px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.lang-dropdown-item-navbar:hover {
+  background: #f0f7f3;
+}
+
+.lang-dropdown-item-navbar.active {
+  color: #1b6b3a;
+  font-weight: 600;
+  background: #e8f5ee;
+}
+
 /* ── PAGE CONTENT ── */
 .page-content {
   flex: 1;

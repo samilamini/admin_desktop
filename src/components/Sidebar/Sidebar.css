@@ -7,6 +7,7 @@
   flex-direction: column;
   flex-shrink: 0;
 }
+
 .sidebar-logo {
   background: transparent;
   margin: 10px;
@@ -15,6 +16,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .logo-img {
   width: 140px;
   object-fit: contain;
@@ -53,7 +55,10 @@
 
 .sidebar-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 12px 10px;
+  padding: 10px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .sidebar-user {
@@ -112,4 +117,60 @@
 .sidebar-logout-icon:hover {
   background: rgba(255, 255, 255, 0.15);
   color: white;
+}
+
+/* ── Dropdown langue ── */
+.lang-dropdown-wrap {
+  position: relative;
+}
+
+.lang-dropdown-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+
+.lang-dropdown-btn:hover {
+  color: white;
+}
+
+.lang-dropdown-menu {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  width: 130px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 200;
+}
+
+.lang-dropdown-item {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 12px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.lang-dropdown-item:hover {
+  background: #f0f7f3;
+}
+
+.lang-dropdown-item.active {
+  color: #1b6b3a;
+  font-weight: 600;
+  background: #e8f5ee;
 }

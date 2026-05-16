@@ -3,7 +3,6 @@ import Sidebar from './components/Sidebar/Sidebar';
 import StatCard from './components/StatCard/StatCard';
 import SignalementsTable from './components/SignalementsTable/SignalementsTable';
 import StatusChart from './components/StatusChart/StatusChart';
-import Rapports from './components/Rapports/Rapports';
 import {
   SignalementsByType, SignalementsByRegion,
   EvolutionMensuelle, ResumePerformances
@@ -11,20 +10,26 @@ import {
 import Signalements from './components/Signalements/Signalements';
 import Carte from './components/Carte/Carte';
 import Utilisateurs from './components/Utilisateurs/Utilisateurs';
+import Rapports from './components/Rapports/Rapports';
 import {
   AlertTriangle, ClipboardList, Clock, Star,
-  Bell, Calendar, Download, MapPin, TrendingUp, PanelLeft
+  Bell, Calendar, PanelLeft, MapPin, TrendingUp, Globe
 } from 'lucide-react';
 import './App.css';
+import { useLang } from './context/LanguageContext.jsx';
+import t from './translations.json';
+
+const langOptions = ['fr', 'en', 'ar'];
+const getLanguageLabel = (code) => t.languages?.[code]?.name ?? code;
 
 function PageDashboard() {
   return (
     <>
       <div className="stat-cards">
-        <StatCard title="Total signalements"        value="1 284" color="#e63946" icon={<AlertTriangle size={20}/>} />
-        <StatCard title="Résolus"                   value="821"   color="#2d6a4f" icon={<ClipboardList size={20}/>} />
-        <StatCard title="En attente"                value="347"   color="#f4a261" icon={<Clock size={20}/>} />
-        <StatCard title="Utilisateurs en ce moment" value="137"   color="#457b9d" icon={<Star size={20}/>} />
+        <StatCard titleKey="totalSignalements"        value="1 284" color="#e63946" icon={<AlertTriangle size={20}/>} />
+        <StatCard titleKey="resolus"                   value="821"   color="#2d6a4f" icon={<ClipboardList size={20}/>} />
+        <StatCard titleKey="enAttente"                value="347"   color="#f4a261" icon={<Clock size={20}/>} />
+        <StatCard titleKey="enCours"                  value="137"   color="#457b9d" icon={<Star size={20}/>} />
       </div>
       <div className="dashboard-grid">
         <div className="grid-left"><SignalementsTable /></div>
@@ -35,20 +40,37 @@ function PageDashboard() {
 }
 
 function PageStatistiques() {
+  const { lang } = useLang();
+  const months = t.common.months[lang];
+
   return (
     <>
       <div className="filters-row">
-        <select className="filter-select"><option>toutes les regions</option><option>Alger</option><option>Oran</option></select>
-        <select className="filter-select"><option>tous les types</option><option>Coupure réseau</option><option>Faible débit</option></select>
-        <select className="filter-select"><option>Avril</option><option>Mars</option><option>Février</option></select>
-        <select className="filter-select"><option>2025</option><option>2024</option></select>
-        <button className="export-btn"><Download size={13} /> Export</button>
+        <select className="filter-select">
+          <option>{t.signalements.dropdowns.allRegions[lang]}</option>
+          <option>{t.signalements.regions.babEzzouar[lang]}</option>
+          <option>{t.signalements.regions.elHarrach[lang]}</option>
+        </select>
+        <select className="filter-select">
+          <option>{t.signalements.dropdowns.allTypes[lang]}</option>
+          <option>{t.signalements.problemTypes.coupureReseau[lang]}</option>
+          <option>{t.signalements.problemTypes.faibleSignal[lang]}</option>
+        </select>
+        <select className="filter-select">
+          <option>{months[3]}</option>
+          <option>{months[2]}</option>
+          <option>{months[1]}</option>
+        </select>
+        <select className="filter-select">
+          <option>2025</option>
+          <option>2024</option>
+        </select>
       </div>
       <div className="stat-cards">
-        <StatCard title="Signalements ce mois"      value="1,862"  color="#fb8c00" icon={<AlertTriangle size={20}/>} />
-        <StatCard title="Taux de résolution"        value="312"    color="#1a6b3a" icon={<TrendingUp size={20}/>} />
-        <StatCard title="Temps moyen de résolution" value="2h45mn" color="#f9a825" icon={<Clock size={20}/>} />
-        <StatCard title="Zones critiques"           value="3"      color="#e53935" icon={<MapPin size={20}/>} />
+        <StatCard titleKey="signalementsMois"      value="1,862"  color="#fb8c00" icon={<AlertTriangle size={20}/>} />
+        <StatCard titleKey="tauxResolution"        value="312"    color="#1a6b3a" icon={<TrendingUp size={20}/>} />
+        <StatCard titleKey="tempsMoy"             value="2h45mn" color="#f9a825" icon={<Clock size={20}/>} />
+        <StatCard titleKey="zonesCritiques"        value="3"      color="#e53935" icon={<MapPin size={20}/>} />
       </div>
       <div className="charts-row">
         <SignalementsByType />
@@ -62,9 +84,11 @@ function PageStatistiques() {
   );
 }
 
-export default function App() {
-  const [activeNav, setActiveNav] = useState('dashboard');
+function AppContent() {
+  const { lang, setLang } = useLang();
+  const [activeNav, setActiveNav]     = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 900px)');
@@ -79,12 +103,12 @@ export default function App() {
   }, []);
 
   const titles = {
-    dashboard:    { title: 'Tableau de bord',    sub: 'Plateforme de gestion des signalements Mobilis' },
-    signalements: { title: 'Signalements',       sub: 'Liste des signalements' },
-    statistiques: { title: 'Statistiques',       sub: 'Plateforme de gestion des signalements Mobilis' },
-    carte:        { title: 'Carte',              sub: 'Carte des zones critiques' },
-    users:        { title: 'Utilisateurs',       sub: 'Gestion des utilisateurs' },
-    rapports:     { title: 'Rapports',           sub: 'Rapports et exports' },
+    dashboard:    { title: t.sidebar.dashboard[lang],    sub: t.dashboard.pageSubtitle[lang] },
+    signalements: { title: t.sidebar.signalements[lang], sub: t.signalements.pageSubtitle[lang] },
+    statistiques: { title: t.sidebar.statistiques[lang], sub: t.statistiques.pageSubtitle[lang] },
+    carte:        { title: t.sidebar.carte[lang],        sub: t.carte.pageSubtitle[lang] },
+    users:        { title: t.sidebar.utilisateurs[lang], sub: t.utilisateurs.pageSubtitle[lang] },
+    rapports:     { title: t.sidebar.rapports[lang],     sub: t.rapports.pageSubtitle[lang] },
   };
 
   const current = titles[activeNav] || titles.dashboard;
@@ -112,6 +136,28 @@ export default function App() {
           <div className="navbar-right">
             <Bell size={18} className="navbar-icon" />
             <Calendar size={18} className="navbar-icon" />
+
+            <div className="lang-dropdown-wrap-navbar">
+              <button
+                className="lang-dropdown-btn-navbar"
+                onClick={() => setDropdownOpen(o => !o)}
+              >
+                <Globe size={18} />
+              </button>
+              {dropdownOpen && (
+                <div className="lang-dropdown-menu-navbar">
+                  {langOptions.map(code => (
+                    <button
+                      key={code}
+                      className={`lang-dropdown-item-navbar ${lang === code ? 'active' : ''}`}
+                      onClick={() => { setLang(code); setDropdownOpen(false); }}
+                    >
+                      {getLanguageLabel(code)}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -121,14 +167,18 @@ export default function App() {
           {activeNav === 'signalements' && <Signalements />}
           {activeNav === 'carte'        && <Carte />}
           {activeNav === 'users'        && <Utilisateurs />}
-          {activeNav === 'rapports' && <Rapports />}
-{!['dashboard', 'statistiques', 'signalements', 'carte', 'users', 'rapports'].includes(activeNav) && (
-  <div className="page-placeholder">
-    <p>Section <strong>{activeNav}</strong> — à implémenter</p>
-  </div>
-)}
+          {activeNav === 'rapports'     && <Rapports />}
+          {!['dashboard', 'statistiques', 'signalements', 'carte', 'users', 'rapports'].includes(activeNav) && (
+            <div className="page-placeholder">
+              <p>{t.common.sectionMissing[lang].replace('{name}', current.title)}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
+}
+
+export default function App() {
+  return <AppContent />;
 }
